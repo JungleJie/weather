@@ -1,15 +1,16 @@
 package com.example.weather.api
 
+import android.util.Log
 import com.example.weather.data.WeatherResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WeatherApi {
-    @GET("data/2.5/onecall")
+    @GET("data/2.5/forecast/daily")
     suspend fun getWeatherForecast(
         @Query("lat") lat: Double,
         @Query("lon") lon: Double,
-        @Query("exclude") exclude: String = "current,minutely,hourly,alerts",
+        @Query("cnt") count: Int = 7,
         @Query("units") units: String = "metric",
         @Query("appid") apiKey: String
     ): WeatherResponse
